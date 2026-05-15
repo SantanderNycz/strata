@@ -61,3 +61,31 @@ export const CLEAR_PATTERN_HOLES = gql`
     clearPatternHoles(patternId: $patternId)
   }
 `;
+
+export const SET_TERRAIN_NODE = gql`
+  mutation SetTerrainNode(
+    $patternId: ID!
+    $gridX: Int!
+    $gridZ: Int!
+    $elevation: Float!
+  ) {
+    setTerrainNode(
+      patternId: $patternId
+      gridX: $gridX
+      gridZ: $gridZ
+      elevation: $elevation
+    ) {
+      id
+      patternId
+      gridX
+      gridZ
+      elevation
+    }
+  }
+`;
+
+export const CLEAR_TERRAIN_NODES = gql`
+  mutation ClearTerrainNodes($patternId: ID!) {
+    clearTerrainNodes(patternId: $patternId)
+  }
+`;

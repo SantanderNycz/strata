@@ -11,11 +11,12 @@ datasource db {
 }
 
 model Pattern {
-  id          String      @id @default(uuid())
-  name        String
-  description String?
-  createdAt   DateTime    @default(now())
-  drillHoles  DrillHole[]
+  id           String        @id @default(uuid())
+  name         String
+  description  String?
+  createdAt    DateTime      @default(now())
+  drillHoles   DrillHole[]
+  terrainNodes TerrainNode[]
 }
 
 model DrillHole {
@@ -26,4 +27,17 @@ model DrillHole {
   z         Float
   depth     Float
   sequence  Int
+}
+
+// Cada nó da malha de terreno 10×10 (11×11 vértices no total).
+// gridX / gridZ: índice 0–10, mapeados para coordenadas mundo -10 a +10.
+model TerrainNode {
+  id        String  @id @default(uuid())
+  patternId String
+  pattern   Pattern @relation(fields: [patternId], references: [id], onDelete: Cascade)
+  gridX     Int
+  gridZ     Int
+  elevation Float   @default(0)
+
+  @@unique([patternId, gridX, gridZ])
 }

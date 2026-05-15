@@ -12,6 +12,7 @@ interface Props {
   onCreatePattern: () => void;
   onSimulateBlast: () => void;
   onClearScene: () => void;
+  onEditTerrain: () => void;
 }
 
 export function Sidebar({
@@ -24,6 +25,7 @@ export function Sidebar({
   onCreatePattern,
   onSimulateBlast,
   onClearScene,
+  onEditTerrain,
 }: Props) {
   return (
     <aside
@@ -74,6 +76,7 @@ export function Sidebar({
             pattern={activePattern}
             onSimulateBlast={onSimulateBlast}
             onClearScene={onClearScene}
+            onEditTerrain={onEditTerrain}
           />
         )}
       </div>

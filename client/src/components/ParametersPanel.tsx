@@ -4,9 +4,10 @@ interface Props {
   pattern: Pattern;
   onClearScene: () => void;
   onSimulateBlast: () => void;
+  onEditTerrain: () => void;
 }
 
-export function ParametersPanel({ pattern, onClearScene, onSimulateBlast }: Props) {
+export function ParametersPanel({ pattern, onClearScene, onSimulateBlast, onEditTerrain }: Props) {
   const holes = pattern.drillHoles;
   const count = holes.length;
   const avgDepth =
@@ -26,11 +27,24 @@ export function ParametersPanel({ pattern, onClearScene, onSimulateBlast }: Prop
       <div className="space-y-2 mb-4">
         <Stat label="Total Holes" value={String(count)} />
         <Stat label="Avg Depth" value={count > 0 ? `${avgDepth} m` : '—'} />
+        <Stat label="Seq Range" value={count > 0 ? `${seqMin} → ${seqMax}` : '—'} />
         <Stat
-          label="Seq Range"
-          value={count > 0 ? `${seqMin} → ${seqMax}` : '—'}
+          label="Terrain Nodes"
+          value={pattern.terrainNodes.length > 0
+            ? `${pattern.terrainNodes.length} cotas`
+            : 'plano'}
         />
       </div>
+
+      {/* Edit Terrain */}
+      <button
+        onClick={onEditTerrain}
+        className="w-full bg-transparent border border-[#1e293b] text-[#94a3b8] font-mono
+                   text-xs py-2 rounded hover:border-[#f59e0b]/50 hover:text-[#f59e0b]
+                   transition-colors tracking-widest uppercase mb-2"
+      >
+        ◈ Edit Terrain
+      </button>
 
       {/* Simulate Blast */}
       <button

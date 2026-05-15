@@ -1,18 +1,6 @@
 import { gql } from '@apollo/client';
 
-const DRILL_HOLE_FIELDS = gql`
-  fragment DrillHoleFields on DrillHole {
-    id
-    patternId
-    x
-    z
-    depth
-    sequence
-  }
-`;
-
 export const GET_PATTERNS = gql`
-  ${DRILL_HOLE_FIELDS}
   query GetPatterns {
     patterns {
       id
@@ -20,7 +8,19 @@ export const GET_PATTERNS = gql`
       description
       createdAt
       drillHoles {
-        ...DrillHoleFields
+        id
+        patternId
+        x
+        z
+        depth
+        sequence
+      }
+      terrainNodes {
+        id
+        patternId
+        gridX
+        gridZ
+        elevation
       }
     }
   }

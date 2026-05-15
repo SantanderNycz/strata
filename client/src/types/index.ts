@@ -7,15 +7,25 @@ export interface DrillHole {
   sequence: number;
 }
 
+// Nó da malha de terreno — gridX/gridZ 0–10, mapeados para -10..+10 no mundo.
+export interface TerrainNode {
+  id: string;
+  patternId: string;
+  gridX: number;
+  gridZ: number;
+  elevation: number;
+}
+
 export interface Pattern {
   id: string;
   name: string;
   description?: string | null;
   createdAt: string;
   drillHoles: DrillHole[];
+  terrainNodes: TerrainNode[];
 }
 
-/** Temporary state for a hole being configured before mutation fires */
+/** Estado temporário de um furo sendo configurado antes da mutation */
 export interface PendingHole {
   x: number;
   z: number;

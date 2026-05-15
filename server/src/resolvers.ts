@@ -2,12 +2,11 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-const include = { drillHoles: true } as const;
+const include = { drillHoles: true, terrainNodes: true } as const;
 
 export const resolvers = {
   Query: {
     patterns: () => prisma.pattern.findMany({ include }),
-
     pattern: (_: unknown, { id }: { id: string }) =>
       prisma.pattern.findUnique({ where: { id }, include }),
   },
@@ -20,13 +19,7 @@ export const resolvers = {
 
     addDrillHole: (
       _: unknown,
-      args: {
-        patternId: string;
-        x: number;
-        z: number;
-        depth: number;
-        sequence: number;
-      },
+      args: { patternId: string; x: number; z: number; depth: number; sequence: number },
     ) => prisma.drillHole.create({ data: args }),
 
     deleteDrillHole: async (_: unknown, { id }: { id: string }) => {
@@ -41,6 +34,28 @@ export const resolvers = {
 
     clearPatternHoles: async (_: unknown, { patternId }: { patternId: string }) => {
       await prisma.drillHole.deleteMany({ where: { patternId } });
+      return true;
+    },
+
+    // Upsert: cria ou atualiza a cota de um nó pelo índice único (patternId, gridX, gridZ).
+    setTerrainNode: (
+      _: unknown,
+      args: { patternId: string; gridX: number; gridZ: number; elevation: number },
+    ) =>
+      prisma.terrainNode.upsert({
+        where: {
+          patternId_gridX_gridZ: {
+            patternId: args.patternId,
+            gridX: args.gridX,
+            gridZ: args.gridZ,
+          },
+        },
+        update: { elevation: args.elevation },
+        create: args,
+      }),
+
+    clearTerrainNodes: async (_: unknown, { patternId }: { patternId: string }) => {
+      await prisma.terrainNode.deleteMany({ where: { patternId } });
       return true;
     },
   },
