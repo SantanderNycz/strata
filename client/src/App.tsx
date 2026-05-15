@@ -14,7 +14,7 @@ import { DrillHolePlacer } from './components/DrillHolePlacer';
 import { useStrataScene } from './hooks/useStrataScene';
 
 // Apollo refetch list — keeps the patterns query in sync after mutations
-const REFETCH = ['GetPatterns'] as const;
+const REFETCH: string[] = ['GetPatterns'];
 
 export default function App() {
   const canvasRef = useRef<HTMLDivElement>(null);
