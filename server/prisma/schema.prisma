@@ -1,5 +1,8 @@
 generator client {
   provider = "prisma-client-js"
+  // Gera em root/node_modules para que tanto o dev local quanto
+  // o Vercel encontrem o cliente no lugar certo
+  output   = "../../node_modules/.prisma/client"
 }
 
 datasource db {

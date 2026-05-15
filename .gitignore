@@ -1,2 +1,20 @@
-.claude
+# Dependencies (ignoradas em todos os subdiretórios)
 node_modules
+client/node_modules
+server/node_modules
+
+# Build outputs
+dist
+client/dist
+server/dist
+
+# Environment files — NUNCA commitar .env com senhas
+.env
+.env.local
+
+# Editor / OS
+.claude
+.vscode
+.idea
+.DS_Store
+Thumbs.db
