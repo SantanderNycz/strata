@@ -6,7 +6,7 @@
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "prisma generate && tsc",
     "start": "node dist/index.js",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate && node -e \"require('fs').rmSync('node_modules/.prisma',{recursive:true,force:true})\""
   },
   "dependencies": {
     "@apollo/server": "^4.10.4",
