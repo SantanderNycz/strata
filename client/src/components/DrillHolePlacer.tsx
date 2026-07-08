@@ -16,7 +16,7 @@ export function DrillHolePlacer({ nextSequence, position, onConfirm, onCancel }:
     <div
       className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40
                  bg-[#0d0d18] border border-[#f59e0b]/40 rounded-lg p-5 shadow-2xl
-                 w-[380px] font-mono"
+                 w-[calc(100vw-2rem)] max-w-[380px] font-mono"
     >
       <div className="flex items-center justify-between mb-4">
         <span className="text-[#f59e0b] text-xs font-semibold tracking-widest uppercase">

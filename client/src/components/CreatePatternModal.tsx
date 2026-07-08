@@ -24,7 +24,7 @@ export function CreatePatternModal({ onConfirm, onCancel }: Props) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
       <form
         onSubmit={handleSubmit}
-        className="w-[400px] bg-[#0d0d18] border border-[#1e293b] rounded-lg p-6 shadow-2xl"
+        className="w-full max-w-[400px] mx-4 bg-[#0d0d18] border border-[#1e293b] rounded-lg p-6 shadow-2xl"
       >
         <h2 className="text-[#f59e0b] font-mono text-sm font-semibold tracking-widest uppercase mb-5">
           New Pattern

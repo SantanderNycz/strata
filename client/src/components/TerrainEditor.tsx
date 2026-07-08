@@ -114,7 +114,8 @@ export function TerrainEditor({ pattern, onSaveNode, onFlattenAll, onClose }: Pr
         </div>
 
         {/* Corpo */}
-        <div className="px-6 py-5 flex gap-6 items-start flex-wrap">
+        <div className="overflow-x-auto">
+        <div className="px-6 py-5 flex gap-6 items-start" style={{ minWidth: 'max-content' }}>
 
           {/* Grade 2D */}
           <div>
@@ -249,6 +250,7 @@ export function TerrainEditor({ pattern, onSaveNode, onFlattenAll, onClose }: Pr
             </button>
           </div>
         </div>
+        </div>{/* fim overflow-x-auto */}
       </div>
     </div>
   );
